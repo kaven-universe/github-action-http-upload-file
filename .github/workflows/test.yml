@@ -13,7 +13,7 @@ jobs:
         uses: Kaven-Universe/upload-to-kaven-file-server@v1.0.4
         with:
           server: "http://122.234.162.107:5807/file"
-          file: "./dist/index.js"
+          file: "/github/workspace/dist/index.js"
       # Use the output from the `upload` step
       - name: Get the output time
         run: echo "The time was ${{ steps.upload.outputs.time }}"
