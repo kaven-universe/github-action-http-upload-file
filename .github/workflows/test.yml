@@ -8,7 +8,7 @@ jobs:
     steps:
       - name: Hello world action step
         id: hello
-        uses: Kaven-Universe/kaven-github-action@v1.0.0
+        uses: Kaven-Universe/kaven-github-action@v1.0.1
         with:
           who-to-greet: "Kaven"
       # Use the output from the `hello` step
