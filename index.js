@@ -4,16 +4,16 @@
  * @website:     http://blog.kaven.xyz
  * @file:        [upload-to-kaven-file-server] /index.js
  * @create:      2021-11-18 21:09:32.138
- * @modify:      2021-11-18 23:24:49.470
+ * @modify:      2021-11-18 23:33:15.211
  * @version:     1.0.1
- * @times:       6
- * @lines:       69
+ * @times:       7
+ * @lines:       74
  * @copyright:   Copyright © 2021 Kaven. All Rights Reserved.
  * @description: [description]
  * @license:     [license]
  ********************************************************************/
 
-const { existsSync, createReadStream } = require("fs");
+const { existsSync, createReadStream, readdirSync } = require("fs");
 
 const core = require("@actions/core");
 const github = require("@actions/github");
@@ -27,6 +27,11 @@ function logJson(data) {
 
 try {
     logJson(process.env);
+
+    logJson(readdirSync(process.env.RUNNER_WORKSPACE));
+    logJson(readdirSync(process.env.GITHUB_WORKSPACE));
+
+    console.log(__dirname, __filename);
 
     // inputs defined in action metadata file
     const server = core.getInput("server");
