@@ -9965,10 +9965,10 @@ var __webpack_exports__ = {};
  * @website:     http://blog.kaven.xyz
  * @file:        [upload-to-kaven-file-server] /index.js
  * @create:      2021-11-18 21:09:32.138
- * @modify:      2021-11-18 23:02:09.500
+ * @modify:      2021-11-18 23:19:28.549
  * @version:     1.0.1
- * @times:       4
- * @lines:       58
+ * @times:       5
+ * @lines:       69
  * @copyright:   Copyright © 2021 Kaven. All Rights Reserved.
  * @description: [description]
  * @license:     [license]
@@ -9980,18 +9980,29 @@ const core = __nccwpck_require__(6744);
 const github = __nccwpck_require__(6515);
 
 const FormData = __nccwpck_require__(5737);
+const { join } = __nccwpck_require__(1017);
+
+function logJson(data) {
+    console.log(JSON.stringify(data, undefined, 2));
+}
 
 try {
+    logJson(process.env);
+
     // inputs defined in action metadata file
     const server = core.getInput("server");
     console.log(`server: ${server}`);
 
     const filedName = core.getInput("field-name");
 
-    const file = core.getInput("file");
+    let file = core.getInput("file");
     if (!existsSync(file)) {
-        core.setFailed(`file not exists: ${file}`);
-        return;
+        file = join(process.env.GITHUB_WORKSPACE, file);
+
+        if (!existsSync(file)) {
+            core.setFailed(`file not exists: ${file}`);
+            return;
+        }
     }
 
     const form = new FormData();
