@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Upload test
         id: upload
-        uses: Kaven-Universe/upload-to-kaven-file-server@v1.0.x
+        uses: Kaven-Universe/upload-to-kaven-file-server@v1.0.4
         with:
           server: "http://122.234.162.107:5807/file"
           file: "./dist/index.js"
