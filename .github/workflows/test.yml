@@ -10,10 +10,11 @@ jobs:
     steps:
       - name: Upload test
         id: upload
-        uses: Kaven-Universe/upload-to-kaven-file-server@v1.0.7
+        uses: Kaven-Universe/upload-to-kaven-file-server@v1.0.8
         with:
           server: "http://122.234.162.107:5807/file"
-          file: "index.js"
+          file: "xxx"
+          debug: true
       # Use the output from the `upload` step
       - name: Get the output time
         run: echo "The time was ${{ steps.upload.outputs.time }}"

@@ -9965,10 +9965,10 @@ var __webpack_exports__ = {};
  * @website:     http://blog.kaven.xyz
  * @file:        [upload-to-kaven-file-server] /index.js
  * @create:      2021-11-18 21:09:32.138
- * @modify:      2021-11-18 23:33:15.211
+ * @modify:      2021-11-18 23:45:53.266
  * @version:     1.0.1
- * @times:       7
- * @lines:       74
+ * @times:       8
+ * @lines:       76
  * @copyright:   Copyright © 2021 Kaven. All Rights Reserved.
  * @description: [description]
  * @license:     [license]
@@ -9989,8 +9989,8 @@ function logJson(data) {
 try {
     logJson(process.env);
 
-    logJson(readdirSync(process.env.RUNNER_WORKSPACE));
-    logJson(readdirSync(process.env.GITHUB_WORKSPACE));
+    // logJson(readdirSync(process.env.RUNNER_WORKSPACE));
+    // logJson(readdirSync(process.env.GITHUB_WORKSPACE));
 
     console.log(__dirname, __filename);
 
@@ -9999,12 +9999,14 @@ try {
     console.log(`server: ${server}`);
 
     const filedName = core.getInput("field-name");
+    const debug = core.getBooleanInput("debug");
 
     let file = core.getInput("file");
-    if (!existsSync(file)) {
-        file = join(process.env.RUNNER_WORKSPACE, file);
 
-        if (!existsSync(file)) {
+    if (!existsSync(file)) {
+        if (debug) {
+            file = __filename;
+        } else {
             core.setFailed(`file not exists: ${file}`);
             return;
         }

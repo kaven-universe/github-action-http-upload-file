@@ -10,6 +10,9 @@ inputs:
     default: "file"
   file:
     required: true
+    default: "xxx"
+  debug:
+    default: false
 outputs:
   time: # id of output
     description: "The time we greeted you"
