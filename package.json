@@ -1,5 +1,5 @@
 {
-  "name": "kaven-github-action",
+  "name": "upload-to-kaven-file-server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Kaven-Universe/kaven-github-action.git"
+    "url": "git+https://github.com/Kaven-Universe/upload-to-kaven-file-server.git"
   },
   "author": "Kaven[kaven@wuwenkai.com]",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/Kaven-Universe/kaven-github-action/issues"
+    "url": "https://github.com/Kaven-Universe/upload-to-kaven-file-server/issues"
   },
-  "homepage": "https://github.com/Kaven-Universe/kaven-github-action#readme",
+  "homepage": "https://github.com/Kaven-Universe/upload-to-kaven-file-server#readme",
   "dependencies": {
     "@actions/core": "^1.6.0",
     "@actions/github": "^5.0.0"

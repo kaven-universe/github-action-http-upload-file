@@ -2,11 +2,11 @@
  * @author:      Kaven
  * @email:       kaven@wuwenkai.com
  * @website:     http://blog.kaven.xyz
- * @file:        [kaven-github-action] /index.js
+ * @file:        [upload-to-kaven-file-server] /index.js
  * @create:      2021-11-18 21:09:32.138
- * @modify:      2021-11-18 21:17:07.889
+ * @modify:      2021-11-18 22:16:20.441
  * @version:     1.0.1
- * @times:       2
+ * @times:       3
  * @lines:       30
  * @copyright:   Copyright © 2021 Kaven. All Rights Reserved.
  * @description: [description]

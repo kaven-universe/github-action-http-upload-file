@@ -2,11 +2,11 @@
  * @author:      Kaven
  * @email:       kaven@wuwenkai.com
  * @website:     http://blog.kaven.xyz
- * @file:        [kaven-github-action] /.eslintrc.js
+ * @file:        [upload-to-kaven-file-server] /.eslintrc.js
  * @create:      2021-11-18 20:56:44.405
- * @modify:      2021-11-18 20:56:47.057
+ * @modify:      2021-11-18 22:16:20.448
  * @version:     1.0.1
- * @times:       2
+ * @times:       3
  * @lines:       32
  * @copyright:   Copyright © 2021 Kaven. All Rights Reserved.
  * @description: [description]
