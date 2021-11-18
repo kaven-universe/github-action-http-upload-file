@@ -1,0 +1,29 @@
+{
+  "name": "kaven-github-action",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "ncc build index.js --license licenses.txt",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kaven-Universe/kaven-github-action.git"
+  },
+  "author": "Kaven[kaven@wuwenkai.com]",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Kaven-Universe/kaven-github-action/issues"
+  },
+  "homepage": "https://github.com/Kaven-Universe/kaven-github-action#readme",
+  "dependencies": {
+    "@actions/core": "^1.6.0",
+    "@actions/github": "^5.0.0"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.32.0",
+    "@wenkai.wu/eslint-config": "^1.0.5",
+    "eslint": "^8.2.0"
+  }
+}
