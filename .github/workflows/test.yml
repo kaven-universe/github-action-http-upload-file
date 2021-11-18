@@ -6,13 +6,14 @@ on:
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
-    name: Kaven Github Action Test
+    name: Test
     steps:
-      - name: Hello world action step
-        id: hello
-        uses: Kaven-Universe/upload-to-kaven-file-server@v1.0.2
+      - name: Upload test
+        id: upload
+        uses: Kaven-Universe/upload-to-kaven-file-server@v1.0.3
         with:
-          who-to-greet: "Kaven"
-      # Use the output from the `hello` step
+          server: "http://122.234.162.107:5807/file"
+          file: "./dist/index.js"
+      # Use the output from the `upload` step
       - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
+        run: echo "The time was ${{ steps.upload.outputs.time }}"
