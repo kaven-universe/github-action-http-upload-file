@@ -1,3 +1,5 @@
+name: Self Test
+
 on:
   workflow_dispatch:
 
@@ -8,7 +10,7 @@ jobs:
     steps:
       - name: Hello world action step
         id: hello
-        uses: Kaven-Universe/kaven-github-action@v1.0.1
+        uses: Kaven-Universe/kaven-github-action@v1.0.2
         with:
           who-to-greet: "Kaven"
       # Use the output from the `hello` step
