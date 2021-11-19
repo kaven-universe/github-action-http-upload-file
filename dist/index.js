@@ -18719,9 +18719,9 @@ var __webpack_exports__ = {};
  * @website:     http://blog.kaven.xyz
  * @file:        [github-action-http-upload-file] /index.js
  * @create:      2021-11-18 21:09:32.138
- * @modify:      2021-11-19 21:22:01.773
+ * @modify:      2021-11-19 21:27:04.545
  * @version:     1.0.1
- * @times:       14
+ * @times:       15
  * @lines:       122
  * @copyright:   Copyright © 2021 Kaven. All Rights Reserved.
  * @description: [description]
@@ -18752,8 +18752,8 @@ function upload(server, form, fileSize = 0) {
     let progress = 0;
 
     // (available to req handler)
-    // const expectedLength = form._lastBoundary().length + form._overheadLength;
-    const expectedLength = form.getLengthSync() + fileSize;
+    const expectedLength = form._lastBoundary().length + form._overheadLength + fileSize;
+    // const expectedLength = form.getLengthSync() + fileSize;
 
     const R = form.submit(server, function(err, res) {
         if (err) {
