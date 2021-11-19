@@ -24,4 +24,4 @@ jobs:
           debug: true
       # Use the output from the `upload` step
       - name: Get the output
-        run: echo "file: ${{ steps.upload.outputs.file }}"
+        run: echo "${{ steps.upload.outputs.file }}"
