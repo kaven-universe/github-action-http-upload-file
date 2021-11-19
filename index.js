@@ -4,10 +4,10 @@
  * @website:     http://blog.kaven.xyz
  * @file:        [upload-to-kaven-file-server] /index.js
  * @create:      2021-11-18 21:09:32.138
- * @modify:      2021-11-19 15:39:08.485
+ * @modify:      2021-11-19 17:00:49.263
  * @version:     1.0.1
- * @times:       10
- * @lines:       88
+ * @times:       11
+ * @lines:       85
  * @copyright:   Copyright © 2021 Kaven. All Rights Reserved.
  * @description: [description]
  * @license:     [license]
@@ -27,22 +27,19 @@ function logJson(data) {
 }
 
 try {
-    logJson(process.env);
-
-    // logJson(readdirSync(process.env.RUNNER_WORKSPACE));
-    // logJson(readdirSync(process.env.GITHUB_WORKSPACE));
-
     console.log(__dirname, __filename);
 
     // inputs defined in action metadata file
-    const server = core.getInput("server");
-    console.log(`server: ${server}`);
-
-    const filedName = core.getInput("field-name");
     const debug = core.getBooleanInput("debug");
+    const server = core.getInput("server");
+    const filedName = core.getInput("field-name");
 
     let file = core.getInput("file");
     let newFile = core.getInput("rename-file-to");
+
+    if (debug) {
+        logJson(process.env);
+    }
 
     if (!existsSync(file)) {
         if (debug) {
