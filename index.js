@@ -2,7 +2,7 @@
  * @author:      Kaven
  * @email:       kaven@wuwenkai.com
  * @website:     http://blog.kaven.xyz
- * @file:        [upload-to-kaven-file-server] /index.js
+ * @file:        [github-action-http-upload-file] /index.js
  * @create:      2021-11-18 21:09:32.138
  * @modify:      2021-11-19 17:00:49.263
  * @version:     1.0.1
