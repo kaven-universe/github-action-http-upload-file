@@ -4,10 +4,10 @@
  * @website:     http://blog.kaven.xyz
  * @file:        [github-action-http-upload-file] /index.js
  * @create:      2021-11-18 21:09:32.138
- * @modify:      2021-11-19 20:11:23.696
+ * @modify:      2021-11-19 21:04:31.988
  * @version:     1.0.1
- * @times:       12
- * @lines:       85
+ * @times:       13
+ * @lines:       117
  * @copyright:   Copyright © 2021 Kaven. All Rights Reserved.
  * @description: [description]
  * @license:     [license]
@@ -20,10 +20,49 @@ const core = require("@actions/core");
 const github = require("@actions/github");
 
 const FormData = require("form-data");
+const { FileSize } = require("kaven-basic");
 
 
 function logJson(data) {
     console.log(JSON.stringify(data, undefined, 2));
+}
+
+/**
+ * 
+ * @param {String} server 
+ * @param {import("form-data")} form 
+ */
+function upload(server, form) {
+    let progress = 0;
+
+    // (available to req handler)
+    const expectedLength = form._lastBoundary().length + form._overheadLength;
+
+    const R = form.submit(server, function(err, res) {
+        if (err) {
+            core.setFailed(err.message);
+        }
+
+        console.log("statusCode:", res.statusCode);
+
+        // unstuck new streams
+        res.resume();
+    });
+
+    // augment into request
+    const oWrite = R.write;
+    R.write = function(chunk) {
+        return oWrite.call(this, chunk, function() {
+            form.emit("progress", chunk);
+        });
+    };
+
+    // track progress
+    form.on("progress", function(chunk) {
+        progress += chunk.length;
+
+        console.log(`progress: ${(progress / expectedLength).toFixed(2)}, ${FileSize(progress)} of ${FileSize(expectedLength)}`);
+    });
 }
 
 try {
@@ -66,14 +105,7 @@ try {
     form.append("runNumber", github.context.runNumber);
     form.append(filedName, createReadStream(file));
 
-    form.submit(server, function(err, res) {
-        if (err) {
-            core.setFailed(err.message);
-        }
-
-        // res – response object (http.IncomingMessage)  //
-        res.resume();
-    });
+    upload(server, form);
 
     core.setOutput("file", file);
 
