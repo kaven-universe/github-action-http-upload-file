@@ -4,16 +4,16 @@
  * @website:     http://blog.kaven.xyz
  * @file:        [github-action-http-upload-file] /index.js
  * @create:      2021-11-18 21:09:32.138
- * @modify:      2021-11-19 21:04:31.988
+ * @modify:      2021-11-19 21:22:01.773
  * @version:     1.0.1
- * @times:       13
- * @lines:       117
+ * @times:       14
+ * @lines:       122
  * @copyright:   Copyright © 2021 Kaven. All Rights Reserved.
  * @description: [description]
  * @license:     [license]
  ********************************************************************/
 
-const { existsSync, createReadStream, renameSync } = require("fs");
+const { existsSync, createReadStream, renameSync, statSync } = require("fs");
 const { join, dirname } = require("path");
 
 const core = require("@actions/core");
@@ -31,12 +31,14 @@ function logJson(data) {
  * 
  * @param {String} server 
  * @param {import("form-data")} form 
+ * @param {Number} fileSize 
  */
-function upload(server, form) {
+function upload(server, form, fileSize = 0) {
     let progress = 0;
 
     // (available to req handler)
-    const expectedLength = form._lastBoundary().length + form._overheadLength;
+    // const expectedLength = form._lastBoundary().length + form._overheadLength;
+    const expectedLength = form.getLengthSync() + fileSize;
 
     const R = form.submit(server, function(err, res) {
         if (err) {
@@ -61,7 +63,7 @@ function upload(server, form) {
     form.on("progress", function(chunk) {
         progress += chunk.length;
 
-        console.log(`progress: ${(progress / expectedLength).toFixed(2)}, ${FileSize(progress)} of ${FileSize(expectedLength)}`);
+        console.log(`progress: ${(progress / expectedLength * 100).toFixed(2)}%, ${FileSize(progress)} of ${FileSize(expectedLength)}`);
     });
 }
 
@@ -100,12 +102,15 @@ try {
         file = newFile;
     }
 
+    const fileSize = statSync(file).size;
+
     const form = new FormData();
     form.append("runId", github.context.runId);
     form.append("runNumber", github.context.runNumber);
     form.append(filedName, createReadStream(file));
 
-    upload(server, form);
+    console.log(`upload file: ${file}, size: ${FileSize(fileSize)}`);
+    upload(server, form, fileSize);
 
     core.setOutput("file", file);
 
