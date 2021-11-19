@@ -4,22 +4,23 @@
  * @website:     http://blog.kaven.xyz
  * @file:        [upload-to-kaven-file-server] /index.js
  * @create:      2021-11-18 21:09:32.138
- * @modify:      2021-11-18 23:45:53.266
+ * @modify:      2021-11-19 15:39:08.485
  * @version:     1.0.1
- * @times:       8
- * @lines:       76
+ * @times:       10
+ * @lines:       88
  * @copyright:   Copyright © 2021 Kaven. All Rights Reserved.
  * @description: [description]
  * @license:     [license]
  ********************************************************************/
 
-const { existsSync, createReadStream, readdirSync } = require("fs");
+const { existsSync, createReadStream, renameSync } = require("fs");
+const { join, dirname } = require("path");
 
 const core = require("@actions/core");
 const github = require("@actions/github");
 
 const FormData = require("form-data");
-const { join } = require("path");
+
 
 function logJson(data) {
     console.log(JSON.stringify(data, undefined, 2));
@@ -41,6 +42,7 @@ try {
     const debug = core.getBooleanInput("debug");
 
     let file = core.getInput("file");
+    let newFile = core.getInput("rename-file-to");
 
     if (!existsSync(file)) {
         if (debug) {
@@ -49,6 +51,17 @@ try {
             core.setFailed(`file not exists: ${file}`);
             return;
         }
+    }
+
+    if (newFile) {
+
+        const dir = dirname(file);
+        newFile = join(dir, newFile);
+
+        renameSync(file, newFile);
+        console.log(`rename ${file} to ${newFile}`);
+
+        file = newFile;
     }
 
     const form = new FormData();
@@ -65,8 +78,7 @@ try {
         res.resume();
     });
 
-    const time = (new Date()).toTimeString();
-    core.setOutput("time", time);
+    core.setOutput("file", file);
 
     // Get the JSON webhook payload for the event that triggered the workflow
     // const payload = JSON.stringify(github.context.payload, undefined, 2);

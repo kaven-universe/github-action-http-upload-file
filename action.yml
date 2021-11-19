@@ -5,17 +5,19 @@ inputs:
     description: "server address"
     required: true
     default: ""
+  file:
+    required: true
+    default: ""
+  rename-file-to:
+    default: ""
   field-name:
     required: true
     default: "file"
-  file:
-    required: true
-    default: "xxx"
   debug:
     default: false
 outputs:
-  time: # id of output
-    description: "The time we greeted you"
+  file: # id of output
+    description: "The new filename"
 runs:
   using: "node12"
   main: "dist/index.js"
