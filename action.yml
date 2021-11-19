@@ -1,13 +1,11 @@
-name: "Upload to Kaven-File-Server"
-description: "Upload files to kaven file server"
+name: "Upload file to http server"
+description: "Upload file to http server"
 inputs:
   server: # id of input
-    description: "server address"
+    description: "upload api"
     required: true
-    default: ""
   file:
     required: true
-    default: ""
   rename-file-to:
     default: ""
   field-name:
