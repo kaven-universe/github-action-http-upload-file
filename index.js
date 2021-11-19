@@ -4,9 +4,9 @@
  * @website:     http://blog.kaven.xyz
  * @file:        [github-action-http-upload-file] /index.js
  * @create:      2021-11-18 21:09:32.138
- * @modify:      2021-11-19 17:00:49.263
+ * @modify:      2021-11-19 20:11:23.696
  * @version:     1.0.1
- * @times:       11
+ * @times:       12
  * @lines:       85
  * @copyright:   Copyright © 2021 Kaven. All Rights Reserved.
  * @description: [description]
@@ -27,8 +27,6 @@ function logJson(data) {
 }
 
 try {
-    console.log(__dirname, __filename);
-
     // inputs defined in action metadata file
     const debug = core.getBooleanInput("debug");
     const server = core.getInput("server");
@@ -39,6 +37,8 @@ try {
 
     if (debug) {
         logJson(process.env);
+
+        console.log(__dirname, __filename);
     }
 
     if (!existsSync(file)) {
