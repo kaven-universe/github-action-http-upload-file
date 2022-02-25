@@ -14,8 +14,9 @@ inputs:
   debug:
     default: false
   json_stringify_form_data:
-    default: "[{'key':'k1','value':'v1'},{'key':'k2','value':'v2'}]"
-  
+    # "[{'key':'k1','value':'v1'}, {'key':'k2','value':'v2'}]"
+    default: "[]"
+
 outputs:
   file: # id of output
     description: "The new filename"

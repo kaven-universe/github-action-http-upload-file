@@ -4,9 +4,9 @@
  * @website:     http://blog.kaven.xyz
  * @file:        [github-action-http-upload-file] /index.js
  * @create:      2021-11-18 21:09:32.138
- * @modify:      2022-02-25 10:57:11.345
+ * @modify:      2022-02-25 13:27:54.490
  * @version:     1.0.1
- * @times:       18
+ * @times:       19
  * @lines:       138
  * @copyright:   Copyright © 2021-2022 Kaven. All Rights Reserved.
  * @description: [description]
@@ -113,14 +113,14 @@ try {
         const json_form_data = JSON.parse(json_stringify_form_data);
 
         if (debug) {
-            logJson(json_form_data);
+            console.log(json_form_data);
         }
 
         for (const item of json_form_data) {
             form.append(item.key, item.value);
         }
     } catch (e) {
-        console.warn(e);
+        console.warn(json_stringify_form_data, e);
     }
 
     form.append(filedName, createReadStream(file));
