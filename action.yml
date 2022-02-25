@@ -1,5 +1,9 @@
-name: "Upload file to http server"
-description: "Upload file to http server"
+name: "Upload file to http(s) server"
+description: "Upload file to http(s) server"
+author: Kaven[kaven@wuwenkai.com]
+branding:
+  icon: "arrow-up-circle"
+  color: "blue"
 inputs:
   server: # id of input
     description: "upload api"

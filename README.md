@@ -1,6 +1,6 @@
 # github-action-http-upload-file
 
-This action uploads the file to the http server.
+This action uploads the file to the [http(s) server](https://github.com/Kaven-Universe/kaven-file-server).
 
 ## Example usage
 
