@@ -18719,11 +18719,11 @@ var __webpack_exports__ = {};
  * @website:     http://blog.kaven.xyz
  * @file:        [github-action-http-upload-file] /index.js
  * @create:      2021-11-18 21:09:32.138
- * @modify:      2021-11-19 21:27:04.545
+ * @modify:      2022-02-25 10:57:11.345
  * @version:     1.0.1
- * @times:       15
- * @lines:       122
- * @copyright:   Copyright © 2021 Kaven. All Rights Reserved.
+ * @times:       18
+ * @lines:       138
+ * @copyright:   Copyright © 2021-2022 Kaven. All Rights Reserved.
  * @description: [description]
  * @license:     [license]
  ********************************************************************/
@@ -18787,6 +18787,7 @@ try {
     const debug = core.getBooleanInput("debug");
     const server = core.getInput("server");
     const filedName = core.getInput("field-name");
+    const json_stringify_form_data = core.getInput("json_stringify_form_data");
 
     let file = core.getInput("file");
     let newFile = core.getInput("rename-file-to");
@@ -18821,7 +18822,22 @@ try {
 
     const form = new FormData();
     form.append("runId", github.context.runId);
-    form.append("runNumber", github.context.runNumber);
+    form.append("runNumber", github.context.runNumber);    
+
+    try {
+        const json_form_data = JSON.parse(json_stringify_form_data);
+
+        if (debug) {
+            logJson(json_form_data);
+        }
+
+        for (const item of json_form_data) {
+            form.append(item.key, item.value);
+        }
+    } catch (e) {
+        console.warn(e);
+    }
+
     form.append(filedName, createReadStream(file));
 
     console.log(`upload file: ${file}, size: ${FileSize(fileSize)}`);
