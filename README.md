@@ -7,7 +7,7 @@ This action uploads the file to the [http(s) server](https://github.com/Kaven-Un
 ```yml
 - name: Upload
   id: upload
-  uses: Kaven-Universe/github-action-http-upload-file@v1.0.18
+  uses: Kaven-Universe/github-action-http-upload-file@v1
   with:
     server: http://server.com/file
     file: "xxx"

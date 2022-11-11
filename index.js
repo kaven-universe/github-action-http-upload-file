@@ -4,14 +4,16 @@
  * @website:     http://blog.kaven.xyz
  * @file:        [github-action-http-upload-file] /index.js
  * @create:      2021-11-18 21:09:32.138
- * @modify:      2022-02-25 13:27:54.490
+ * @modify:      2022-11-11 11:29:26.477
  * @version:     1.0.1
- * @times:       19
- * @lines:       138
+ * @times:       20
+ * @lines:       140
  * @copyright:   Copyright © 2021-2022 Kaven. All Rights Reserved.
  * @description: [description]
  * @license:     [license]
  ********************************************************************/
+
+/* eslint-disable no-console */
 
 const { existsSync, createReadStream, renameSync, statSync } = require("fs");
 const { join, dirname } = require("path");

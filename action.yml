@@ -25,5 +25,5 @@ outputs:
   file: # id of output
     description: "The new filename"
 runs:
-  using: "node12"
+  using: "node16"
   main: "dist/index.js"
